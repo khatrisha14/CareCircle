@@ -1,0 +1,63 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# Xcode — build products & indexes
+build/
+DerivedData/
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM
+*.dSYM.zip
+*.app
+*.zip
+
+# Xcode — user-specific (keep shared schemes / Package.resolved)
+xcuserdata/
+*.xcuserdatad/
+
+# Swift Package Manager
+.swiftpm/configuration/
+.build/
+Packages/
+
+# CocoaPods (uncomment if you add a Podfile)
+# Pods/
+
+# Carthage
+Carthage/Build/
+
+# Accio dependency manager
+Dependencies/
+.accio/
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Code Injection
+iOSInjectionProject/
+
+# Firebase / secrets — copy from Console; see README
+CareCircle/GoogleService-Info.plist
+
+# Node (Cloud Functions)
+functions/node_modules/
+functions/.env
+functions/.env.*
+
+# Misc
+*.log
+*.swp
+*~

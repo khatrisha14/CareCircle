@@ -7,9 +7,16 @@
 
 import SwiftUI
 import SwiftData
+import FirebaseCore
 
 @main
 struct CareCircleApp: App {
+    // Configure Firebase when the app initializes; run journal cleanup (remove entries older than 7 days).
+    init() {
+        FirebaseApp.configure()
+        JournalStore.shared.runCleanupIfNeeded()
+    }
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -25,7 +32,7 @@ struct CareCircleApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
         }
         .modelContainer(sharedModelContainer)
     }

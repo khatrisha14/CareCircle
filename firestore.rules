@@ -1,0 +1,85 @@
+// Firestore Security Rules – deploy with: firebase deploy --only firestore
+// Do not add Storage rules here; use storage.rules for Firebase Storage.
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    match /routines/{routineId} {
+      allow read: if request.auth != null && resource.data.caregiverId == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.caregiverId == request.auth.uid;
+      allow update, delete: if request.auth != null && resource.data.caregiverId == request.auth.uid;
+    }
+
+    match /routineCompletions/{completionId} {
+      allow read: if request.auth != null && resource.data.caregiverId == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.caregiverId == request.auth.uid;
+      allow update, delete: if request.auth != null && resource.data.caregiverId == request.auth.uid;
+    }
+
+    match /careReports/{reportId} {
+      allow read: if request.auth != null && resource.data.caregiverId == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.caregiverId == request.auth.uid;
+      allow update, delete: if request.auth != null && resource.data.caregiverId == request.auth.uid;
+    }
+
+    match /careRequests/{requestId} {
+      allow read: if request.auth != null && (
+        resource.data.caregiverId == request.auth.uid ||
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'socialWorker'
+      );
+      allow create: if request.auth != null && request.resource.data.caregiverId == request.auth.uid;
+      allow update: if request.auth != null && (
+        resource.data.caregiverId == request.auth.uid ||
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'socialWorker'
+      );
+      allow delete: if request.auth != null && resource.data.caregiverId == request.auth.uid;
+    }
+
+    match /supportPosts/{postId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'socialWorker';
+      allow update, delete: if false;
+    }
+
+    match /socialPosts/{postId} {
+      allow read: if true;
+      allow create: if request.auth != null
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'socialWorker';
+      allow delete: if request.auth != null
+        && resource.data.socialWorkerId == request.auth.uid;
+      allow update: if false;
+    }
+
+    match /communityRequests/{requestId} {
+      allow create: if request.auth != null && request.resource.data.caregiverId == request.auth.uid && request.resource.data.status == 'open';
+      allow read: if request.auth != null && (
+        resource.data.caregiverId == request.auth.uid ||
+        resource.data.acceptedBy == request.auth.uid ||
+        (resource.data.status == 'open' && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'community')
+      );
+      allow update: if request.auth != null && (
+        resource.data.caregiverId == request.auth.uid ||
+        (resource.data.status == 'open' && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'community' && request.resource.data.status == 'accepted' && request.resource.data.acceptedBy == request.auth.uid) ||
+        ((resource.data.caregiverId == request.auth.uid || resource.data.acceptedBy == request.auth.uid) && request.resource.data.status == 'completed')
+      );
+      allow delete: if request.auth != null && resource.data.caregiverId == request.auth.uid;
+    }
+
+    match /messages/{messageId} {
+      allow read: if request.auth != null && (
+        get(/databases/$(database)/documents/communityRequests/$(resource.data.requestId)).data.caregiverId == request.auth.uid ||
+        get(/databases/$(database)/documents/communityRequests/$(resource.data.requestId)).data.acceptedBy == request.auth.uid
+      );
+      allow create: if request.auth != null && request.resource.data.requestId != null && (
+        get(/databases/$(database)/documents/communityRequests/$(request.resource.data.requestId)).data.caregiverId == request.auth.uid ||
+        get(/databases/$(database)/documents/communityRequests/$(request.resource.data.requestId)).data.acceptedBy == request.auth.uid
+      );
+      allow update, delete: if false;
+    }
+  }
+}

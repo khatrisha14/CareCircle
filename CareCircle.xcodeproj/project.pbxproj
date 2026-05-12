@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		678E4D722F348AB70001782E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 678E4D712F348AB70001782E /* FirebaseAuth */; };
+		678E4D742F348AB70001782E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 678E4D732F348AB70001782E /* FirebaseFirestore */; };
+		678E4D752F348AB80001782E /* FoundationModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 678E4D762F348AB80001782E /* FoundationModels.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		678E4D482F3485360001782E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,11 +33,33 @@
 		678E4D352F3485340001782E /* CareCircle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CareCircle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		678E4D472F3485360001782E /* CareCircleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CareCircleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		678E4D512F3485360001782E /* CareCircleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CareCircleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		678E4D762F348AB80001782E /* FoundationModels.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FoundationModels.framework; path = System/Library/Frameworks/FoundationModels.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		678E4D6E2F34893C0001782E /* Exceptions for "CareCircle" folder in "CareCircleTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"GoogleService-Info.plist",
+			);
+			target = 678E4D462F3485360001782E /* CareCircleTests */;
+		};
+		678E4D6F2F34893C0001782E /* Exceptions for "CareCircle" folder in "CareCircleUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"GoogleService-Info.plist",
+			);
+			target = 678E4D502F3485360001782E /* CareCircleUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		678E4D372F3485340001782E /* CareCircle */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				678E4D6E2F34893C0001782E /* Exceptions for "CareCircle" folder in "CareCircleTests" target */,
+				678E4D6F2F34893C0001782E /* Exceptions for "CareCircle" folder in "CareCircleUITests" target */,
+			);
 			path = CareCircle;
 			sourceTree = "<group>";
 		};
@@ -52,6 +80,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				678E4D722F348AB70001782E /* FirebaseAuth in Frameworks */,
+				678E4D742F348AB70001782E /* FirebaseFirestore in Frameworks */,
+				678E4D752F348AB80001782E /* FoundationModels.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +110,7 @@
 				678E4D4A2F3485360001782E /* CareCircleTests */,
 				678E4D542F3485360001782E /* CareCircleUITests */,
 				678E4D362F3485340001782E /* Products */,
+				67E2432F2F48A2830016713C /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +122,14 @@
 				678E4D512F3485360001782E /* CareCircleUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		67E2432F2F48A2830016713C /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				678E4D762F348AB80001782E /* FoundationModels.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +152,8 @@
 			);
 			name = CareCircle;
 			packageProductDependencies = (
+				678E4D712F348AB70001782E /* FirebaseAuth */,
+				678E4D732F348AB70001782E /* FirebaseFirestore */,
 			);
 			productName = CareCircle;
 			productReference = 678E4D352F3485340001782E /* CareCircle.app */;
@@ -195,6 +237,9 @@
 			);
 			mainGroup = 678E4D2C2F3485340001782E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				678E4D702F348AB70001782E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 678E4D362F3485340001782E /* Products */;
 			projectDirPath = "";
@@ -395,10 +440,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"CareCircle/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Q3J967Y5F2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "CareCircle uses the camera to add a photo to your routine.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CareCircle shows community requests and posts within 50km of your location.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Save care reports as photos to your library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "CareCircle uses your photo library to add a photo to your routine.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -424,10 +473,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"CareCircle/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Q3J967Y5F2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "CareCircle uses the camera to add a photo to your routine.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CareCircle shows community requests and posts within 50km of your location.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Save care reports as photos to your library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "CareCircle uses your photo library to add a photo to your routine.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -558,6 +611,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		678E4D702F348AB70001782E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		678E4D712F348AB70001782E /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 678E4D702F348AB70001782E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		678E4D732F348AB70001782E /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 678E4D702F348AB70001782E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 678E4D2D2F3485340001782E /* Project object */;
 }

@@ -1,0 +1,14 @@
+// Firebase Storage Security Rules – deploy with: firebase deploy --only storage
+// Role is set by Cloud Function (syncUserRoleClaim) from users/{uid}.role → custom claim.
+// No Firestore read here; check token: request.auth.token.role == 'socialWorker'
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    match /socialPosts/{fileName} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.role == 'socialWorker';
+    }
+  }
+}
