@@ -1,10 +1,10 @@
 # CareCircle
 
+CareCircle is a **SwiftUI** healthcare support app that connects **caregivers**, **social workers**, and **community** participants. It uses **Firebase** for authentication, Firestore, Storage, and optional **Cloud Functions**, with **SwiftData** for local persistence and role-based dashboards after a location onboarding step.
+
 ## 👥 Project Information
 
 This project was developed as a **team project**. I contributed to the development and have uploaded this repository to showcase my work and contributions.
-
-CareCircle is a **SwiftUI** healthcare support app that connects **caregivers**, **social workers**, and **community** participants. It uses **Firebase** for authentication, Firestore, Storage, and optional **Cloud Functions**, with **SwiftData** for local persistence and role-based dashboards after a location onboarding step.
 
 ---
 
